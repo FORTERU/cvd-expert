@@ -9,8 +9,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Constants
-MODEL_PATH = Path('xgboost_heartpredictor.pkl')
-IMAGE_PATH = Path('drxgboost.jpg')
+MODEL_PATH = Path('xgboost_cvd_predictor.pkl')
+IMAGE_PATH = Path('thumbnail.jpg')
 
 # Data mappings
 MAPPINGS = {
@@ -46,7 +46,7 @@ MAPPINGS = {
     }
 }
 
-class HeartDiseasePredictor:
+class CardiovascularDiseasePredictor:
     def __init__(self):
         self.model = self._load_model()
         self.setup_page()
@@ -65,7 +65,7 @@ class HeartDiseasePredictor:
     def setup_page(self):
         """Setup the Streamlit page layout and navigation."""
         st.set_page_config(
-            page_title="Heart Disease Predictor",
+            page_title="Cardiovascular Diseases (CVD) Predictor",
             page_icon="❤️",
             layout="wide"
         )
@@ -73,16 +73,16 @@ class HeartDiseasePredictor:
         with st.sidebar:
             self.selected = st.selectbox(
                 'Select Disease',
-                ['Heart Disease Prediction', 'Diabetes Prediction (Under Development)'],
+                ['Cardiovascular Disease (CVD) Prediction','Heart Disease Prediction (Under Development)', 'Diabetes Prediction (Under Development)'],
                 index=0
             )
 
     def display_description(self):
         """Display the application description and author information."""
-        st.image(str(IMAGE_PATH), caption="Provide the inputs on the left. I'll help you diagnose your heart health! - Dr. XGBoost", width=340)
+        st.image(str(IMAGE_PATH), caption="Provide the inputs on the left. I'll help you diagnose your cardiovascular health!", width=340)
         st.markdown("### About the Application")
         st.markdown("""
-        This AI-powered application helps predict your heart disease risk using advanced machine learning.
+        This AI-powered application helps predict your Cardiovascular Disease (CVD) risk using advanced machine learning.
         
         **Key Features:**
         - 91.5% prediction accuracy
@@ -126,7 +126,7 @@ class HeartDiseasePredictor:
                     'SkinCancer': st.selectbox("Skin Cancer:", ["No", "Yes"])
                 })
             
-            submitted = st.form_submit_button("Predict Heart Disease Risk")
+            submitted = st.form_submit_button("Predict CVD Risk")
             return inputs, submitted
 
     def prepare_input_data(self, inputs):
@@ -170,7 +170,7 @@ class HeartDiseasePredictor:
                     st.markdown(
                         f"""
                         <div style='padding: 20px; border-radius: 10px; background-color: {color}20;'>
-                            <h2 style='color: {color}'>Heart Disease Risk: {probability}%</h2>
+                            <h2 style='color: {color}'>Cardiovascular Disease (CVD) Risk: {probability}%</h2>
                             <p style='color: {color}'>You are in the {zone}. {message}</p>
                         </div>
                         """,
@@ -191,7 +191,7 @@ class HeartDiseasePredictor:
         
         recommendations = [
             "🏃‍♂️ Maintain regular physical activity (150 minutes/week)",
-            "🥗 Follow a heart-healthy diet",
+            "🥗 Follow a Cardiovascular-healthy diet",
             "😴 Get 7-9 hours of quality sleep",
             "🚭 Quit smoking if applicable",
             "🍷 Limit alcohol consumption",
@@ -206,8 +206,8 @@ class HeartDiseasePredictor:
 
     def run(self):
         """Main application loop."""
-        if self.selected == 'Heart Disease Prediction':
-            st.title('❤️ Heart Disease Risk Predictor')
+        if self.selected == 'Cardiovascular Disease (CVD) Prediction':
+            st.title('🏥 Cardiovascular Disease Risk Predictor 🏥')
             
             col1, col2 = st.columns([3, 2])
             
@@ -220,9 +220,11 @@ class HeartDiseasePredictor:
             if submitted:
                 input_data = self.prepare_input_data(inputs)
                 self.predict_and_display(input_data)
+        elif self.selected == 'Heart Disease Prediction (Under Development)':
+            st.info("Heart Disease Prediction feature is under development. Please check back later!")
         else:
             st.info("Diabetes Prediction feature is under development. Please check back later!")
 
 if __name__ == "__main__":
-    app = HeartDiseasePredictor()
+    app = CardiovascularDiseasePredictor()
     app.run()
