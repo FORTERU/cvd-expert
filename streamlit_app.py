@@ -192,7 +192,7 @@ class CardiovascularDiseasePredictor:
         recommendations = [
             "🏃‍♂️ Maintain regular physical activity (150 minutes/week)",
             "🥗 Follow a Cardiovascular-healthy diet",
-            "😴 Get 7-9 hours of quality sleep",
+            "😴 Get 5-8 hours of quality sleep",
             "🚭 Quit smoking if applicable",
             "🍷 Limit alcohol consumption",
             "⚕️ Regular health check-ups"
