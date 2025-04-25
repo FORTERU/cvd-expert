@@ -180,5 +180,5 @@ This tool is for educational purposes only. It is not a substitute for professio
 ---
 
 <div align="center">
-Made with ❤️ by jvc-Byte
+Made with ❤️
 </div>
